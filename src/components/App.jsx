@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { store } from "../store";
 import RouteTable from "./RouteTable";
 import Map from "./Map";
+import MapWrapper from "./Map/MapContainer";
 
 const { Header, Sider, Content } = Layout;
 
@@ -17,7 +18,9 @@ function App() {
             <RouteTable />
           </Sider>
           <Content>
+          <MapWrapper>
             <Map />
+            </MapWrapper>
           </Content>
         </Layout>
       </Layout>
