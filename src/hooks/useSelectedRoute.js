@@ -1,18 +1,19 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
+
 import { changeSelectedRoute } from "../store/reducers/selectedRouteReducer";
 
-export function useSelectedRoute(){
-    const dispatch = useDispatch();
+export function useSelectedRoute() {
+  const dispatch = useDispatch();
 
-    function selectRoute(){
-        return useSelector((state) => state.selectedRoute)
-    }
+  function selectRoute() {
+    return useSelector((state) => state.selectedRoute);
+  }
 
-    const selectedRoute = selectRoute()
+  const selectedRoute = selectRoute();
 
-    function setSelectedRoute(routeIndex){
-        dispatch(changeSelectedRoute(routeIndex))
-    }
+  function setSelectedRoute(routeIndex) {
+    dispatch(changeSelectedRoute(routeIndex));
+  }
 
-    return [selectedRoute, setSelectedRoute]
+  return [selectedRoute, setSelectedRoute];
 }

@@ -1,47 +1,19 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getDeterminedRoute } from '../HTTP-services/routeDetermingAPI';
-import { changeDeterminedRouteCoordinates } from '../store/reducers/determinedRouteReducer';
-import { useSelectedRoute } from './useSelectedRoute';
+import { useSelector, useDispatch } from "react-redux";
 
-export function useDeterminedRoute(){
-    const dispatch = useDispatch();
-    const [selectedRoute] = useSelectedRoute()
+import { changeDeterminedRouteCoordinates } from "../store/reducers/determinedRouteReducer";
 
-    function selectDeterminedRoute(){
-        return useSelector((state) => state.determinedRoute)
-    }
+export function useDeterminedRoute() {
+  const dispatch = useDispatch();
 
-    const determinedRoute = selectDeterminedRoute()
+  function selectDeterminedRoute() {
+    return useSelector((state) => state.determinedRoute);
+  }
 
-    function setDeterminedRoute(coordinates){
-        dispatch(changeDeterminedRouteCoordinates(coordinates))
-    }
+  const determinedRoute = selectDeterminedRoute();
 
-    
-  useEffect(() => {
-    async function getAndSetDeterminedRoute() {
-      const data = await getDeterminedRoute(selectedRoute.value);
-      setDeterminedRoute(toClientModel(data));
-    }
-    getAndSetDeterminedRoute();
-  }, [selectedRoute.index]);
+  function setDeterminedRoute(coordinates) {
+    dispatch(changeDeterminedRouteCoordinates(coordinates));
+  }
 
-    return [determinedRoute, setDeterminedRoute]
+  return [determinedRoute, setDeterminedRoute];
 }
-
-const toClientModel = (routeData) => {
-    const routeCoordinates = [];
-    const legs = routeData?.routes[0]?.legs;
-    legs.map((leg) =>
-      leg.steps?.map((step) =>
-        routeCoordinates.push(
-          ...step.geometry?.coordinates.map((coordinate) => [
-            coordinate[1],
-            coordinate[0],
-          ])
-        )
-      )
-    );
-    return routeCoordinates;
-  };

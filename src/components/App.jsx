@@ -1,10 +1,11 @@
-import "./App.css";
 import { Layout } from "antd";
-import { Provider } from 'react-redux'
+import { Provider } from "react-redux";
+
 import { store } from "../store";
 import RouteTable from "./RouteTable";
 import Map from "./Map";
-import MapWrapper from "./Map/MapContainer";
+import MapWrapper from "./Map/MapWrapper";
+import "./App.css";
 
 const { Header, Sider, Content } = Layout;
 
@@ -18,8 +19,8 @@ function App() {
             <RouteTable />
           </Sider>
           <Content>
-          <MapWrapper>
-            <Map />
+            <MapWrapper>
+              <Map />
             </MapWrapper>
           </Content>
         </Layout>

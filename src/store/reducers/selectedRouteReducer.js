@@ -12,7 +12,7 @@ export const selectedRouteSlice = createSlice({
   reducers: {
     changeSelectedRoute: (state, action) => {
       state.index = action.payload;
-      state.value = DEFAULT_ROUTES[action.payload]
+      state.value = DEFAULT_ROUTES[action.payload];
     },
   },
 });

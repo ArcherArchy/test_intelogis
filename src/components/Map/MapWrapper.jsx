@@ -1,12 +1,9 @@
 import { MapContainer, TileLayer } from "react-leaflet";
 
-
-const MapWrapper = ({children}) => {
-  
+const MapWrapper = ({ children }) => {
   return (
     <div id="map">
-      <MapContainer 
-      >
+      <MapContainer>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {children}
       </MapContainer>

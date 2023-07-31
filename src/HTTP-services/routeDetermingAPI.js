@@ -1,29 +1,16 @@
+import { toServerModel } from "../helpers/determinedRouteToServerModel";
+import { messageUser } from "../helpers/messageUser";
 import server from "./server";
 
 export async function getDeterminedRoute(pointsToDetermine) {
-  const pointsServerModel = toServerModel(pointsToDetermine);
-  const determinedRoute = await server.get(
-    `/route/v1/driving/${pointsServerModel}?overview=false&steps=true&geometries=geojson`
-  );
-
-  return determinedRoute.data;
-}
-
-function toServerModel(pointsToDetermine) {
-  const firstPoint = pointsToDetermine.routePoint1.split(", ");
-  const secondPoint = pointsToDetermine.routePoint2.split(", ");
-  const thirdPoint = pointsToDetermine.routePoint3.split(", ");
-  return (
-    firstPoint[1] +
-    "," +
-    firstPoint[0] +
-    ";" +
-    secondPoint[1] +
-    "," +
-    secondPoint[0] +
-    ";" +
-    thirdPoint[1] +
-    "," +
-    thirdPoint[0]
-  );
+  try {
+    const pointsServerModel = toServerModel(pointsToDetermine);
+    const determinedRoute = await server.get(
+      `/route/v1/driving/${pointsServerModel}?overview=false&steps=true&geometries=geojson`
+    );
+    return determinedRoute.data;
+  } catch (error) {
+    messageUser(`Networ error: ${error}`);
+    return "error";
+  }
 }

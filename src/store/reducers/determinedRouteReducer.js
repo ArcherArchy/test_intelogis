@@ -14,6 +14,7 @@ export const determinedRouteSlice = createSlice({
   },
 });
 
-export const { changeDeterminedRouteCoordinates } = determinedRouteSlice.actions;
+export const { changeDeterminedRouteCoordinates } =
+  determinedRouteSlice.actions;
 
 export const determinedRouteReducer = determinedRouteSlice.reducer;

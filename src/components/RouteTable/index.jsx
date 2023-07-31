@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "antd";
+
 import { useSelectedRoute } from "../../hooks/useSelectedRoute";
 import { DEFAULT_ROUTES } from "../../constants";
 import "./index.css";
@@ -29,17 +30,11 @@ const columns = [
 
 const RouteTable = () => {
   const [selectedRoute, setSelectedRoute] = useSelectedRoute();
-  const rowSelection = {
-    selectedRowKeys: [selectedRoute],
-    hideSelectAll: true,
-    onChange: () => null,
-    type: "radio",
-  };
   return (
     <Table
       columns={columns}
       dataSource={DEFAULT_ROUTES}
-      rowClassName={(record) => 
+      rowClassName={(record) =>
         record.id === selectedRoute?.index ? "highlighted-row" : ""
       }
       onRow={(record, rowIndex) => {

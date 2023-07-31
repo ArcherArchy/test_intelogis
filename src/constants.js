@@ -21,3 +21,10 @@ export const DEFAULT_ROUTES = [
       routePoint3: "59.82761295, 30.41705607",
     },
   ];
+
+export const SAGA_STATUSES = {
+  INITIAL: 'initial',
+  READY: 'ready',
+  REVERTED: 'reverted',
+  PROCESSING: 'processing',
+}
