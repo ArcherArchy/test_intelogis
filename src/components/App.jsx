@@ -13,9 +13,9 @@ function App() {
   return (
     <Provider store={store}>
       <Layout style={{ height: "100vh" }}>
-        <Header style={{ backgroundColor: "blue" }}>Intelogis</Header>
+        <Header style={{ backgroundColor: "rgb(99, 154, 255)" }}>Intelogis</Header>
         <Layout hasSider>
-          <Sider style={{ backgroundColor: "blue" }} width={"35vw"}>
+          <Sider style={{ backgroundColor: "rgb(99, 154, 255)" }} width={"35vw"}>
             <RouteTable />
           </Sider>
           <Content>
